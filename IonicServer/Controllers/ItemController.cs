@@ -58,6 +58,7 @@ namespace IonicServer.Controllers
             try
             {
                 uow.ItemRepositorio.Atualizar(item);
+                uow.Commit();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -81,7 +82,7 @@ namespace IonicServer.Controllers
         public IActionResult PostItem(Item item)
         {
             uow.ItemRepositorio.Adicionar(item);
-
+            uow.Commit();
 
             return CreatedAtAction("GetItem", new { id = item.Id }, item);
         }

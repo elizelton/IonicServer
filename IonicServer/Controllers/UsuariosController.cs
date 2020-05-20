@@ -61,6 +61,7 @@ namespace IonicServer.Controllers
             try
             {
                 uow.UsuarioRepositorio.Atualizar(usuario);
+                uow.Commit();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -84,7 +85,7 @@ namespace IonicServer.Controllers
         public IActionResult PostUsuario(Usuario usuario)
         {
             uow.UsuarioRepositorio.Adicionar(usuario);
-          
+            uow.Commit();
 
             return CreatedAtAction("GetUsuario", new { id = usuario.Id }, usuario);
         }
